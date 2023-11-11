@@ -1,3 +1,6 @@
+//the following code is taken from: https://github.com/jcutrono/esep-webhooks/blob/main/EsepWebhook/src/EsepWebhook/Function.cs
+//this was provided as an example in: https://docs.google.com/document/d/1efKqRBkkQ2vnxtBKiUiBLraEuhuFi_yH0A7nwq3jCm4/edit?usp=sharing
+
 using System.Text;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
@@ -18,9 +21,6 @@ public class Function
     /// <returns></returns>
     public string FunctionHandler(object input, ILambdaContext context)
     {
-        //the following code is taken from: https://github.com/jcutrono/esep-webhooks/blob/main/EsepWebhook/src/EsepWebhook/Function.cs
-        //this was provided as an example in: https://docs.google.com/document/d/1efKqRBkkQ2vnxtBKiUiBLraEuhuFi_yH0A7nwq3jCm4/edit?usp=sharing
-
         dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
         
         string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
